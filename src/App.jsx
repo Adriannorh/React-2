@@ -4,8 +4,7 @@ import Navbar from './Navbar.jsx';
 import LoginComponent from './LoginComponent';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import MembersAdmin from './MembersAdmin';
-import MembersView from './MembersView';
+import Members from './Members'; // Legger til Members-komponenten
 
 function MainContent() {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ function MainContent() {
       <Navbar loggedIn={loggedIn} onLogout={handleLogout} />
 
       <Routes>
-        <Route path="/" element={<MembersView />} />
+        <Route path="/" element={<Members />} /> 
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
@@ -37,7 +36,7 @@ function MainContent() {
             <Route path="/login" element={<LoginComponent onSuccessfulLogin={() => setLoggedIn(true)} />} />
         )}
 
-        <Route path="/admin" element={loggedIn ? <MembersAdmin /> : <Navigate to="/login" />} /> 
+        <Route path="/admin" element={loggedIn ? <About /> : <Navigate to="/login" />} /> 
       </Routes>
     </div>
   );
