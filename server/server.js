@@ -142,12 +142,13 @@ app.get('/ga/results', async (req, res) => {
 
 app.get('/ga/members/:id/results', async (req, res) => {
     try {
-        const res = await axios.get(`${API_GA}/members/${req.params.id}/results`);
-        res.json(res.data);
+        const axiosResponse = await axios.get(`${API_GA}/members/${req.params.id}/results`);  // endret variabelnavnet til axiosResponse
+        res.json(axiosResponse.data);
     } catch (error) {
         res.status(500).send(error.message);
     }
 });
+
 
 app.get('/ga/results/:distance', async (req, res) => {
     try {

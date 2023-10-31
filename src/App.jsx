@@ -6,6 +6,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Members from './Members'; // Legger til Members-komponenten
 
+
 function MainContent() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ function MainContent() {
         <Route path="/" element={<Members />} /> 
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+
 
         {loggedIn ? (
             <Route path="/login" element={<Navigate to="/admin" />} />
