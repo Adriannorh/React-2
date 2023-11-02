@@ -1,8 +1,56 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import PropTypes from "prop-types";
+import InfoDisplay from "./InfoDisplay";
 
-const Members = () => {
-  const [members, setMembers] = useState([]);
+
+const MembersList = ({ members, onSelect, onDelete }) => (
+  <ul className="memberList">
+    {members.map((member) => (
+      <li key={member.memberNumber} className="memberItem">
+        <div className="memberDetails">
+          {member.firstName} {member.lastName} ({member.email})
+        </div>
+        <div>
+          <button className="button" onClick={() => onSelect(member.memberNumber)}>
+            Velg
+          </button>
+          <button className="button" onClick={() => onDelete(member.memberNumber)}>
+            Slett
+          </button>
+        </div>
+      </li>
+    ))}
+  </ul>
+);
+
+const MemberForm = ({ memberData, onInputChange, onSubmit, onCancel, title, btnText }) => (
+  <div className="memberForm">
+    <h2>{title}</h2>
+    {['firstName', 'lastName', 'gender', 'birthYear', 'email'].map((field, index) => (
+      <input
+        key={index}
+        className="inputField"
+        name={field}
+        value={memberData[field]}
+        onChange={onInputChange}
+        placeholder={
+          field === 'gender'
+            ? "Kjønn (M/F)"
+            : field.charAt(0).toUpperCase() + field.slice(1)
+        }
+        type={field === 'birthYear' ? 'number' : 'text'}
+        maxLength={field === 'gender' ? 1 : undefined}
+      />
+    ))}
+    <button className="button" onClick={onSubmit}>
+      {btnText}
+    </button>
+    {onCancel && <button className="button" onClick={onCancel}>Avbryt</button>}
+  </div>
+);
+
+export const Members = ({ members, setMembers, isLoggedIn }) => {
   const [selectedMemberNumber, setSelectedMemberNumber] = useState(null);
   const [memberData, setMemberData] = useState({
     firstName: "",
@@ -12,25 +60,8 @@ const Members = () => {
     email: "",
   });
 
-  useEffect(() => {
-    fetchMembers();
-  }, []);
-
-  const fetchMembers = () => {
-    axios
-      .get("/ga/members")
-      .then((response) => {
-        setMembers(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching members:", error);
-      });
-  };
-
   const handleDeleteMember = (memberNumber) => {
-    const updatedMembers = members.filter(
-      (m) => m.memberNumber !== memberNumber
-    );
+    const updatedMembers = members.filter((m) => m.memberNumber !== memberNumber);
     setMembers(updatedMembers);
   };
 
@@ -58,7 +89,7 @@ const Members = () => {
   const handleAddMember = () => {
     const newMember = {
       ...memberData,
-      memberNumber: Math.max(...members.map((m) => m.memberNumber)) + 1, // Gir nytt medlem neste tilgjengelige medlemsnummer
+      memberNumber: Math.max(...members.map((m) => m.memberNumber)) + 1,
     };
     setMembers([...members, newMember]);
     setMemberData({
@@ -73,129 +104,31 @@ const Members = () => {
   return (
     <div className="membersContainer">
       <h1>Medlemmer</h1>
-
-      {!selectedMemberNumber && (
-        <div className="memberForm">
-          <h2>Legg til nytt medlem</h2>
-          <input
-            className="inputField"
-            name="firstName"
-            value={memberData.firstName}
-            onChange={handleInputChange}
-            placeholder="Fornavn"
-          />
-          <input
-            className="inputField"
-            name="lastName"
-            value={memberData.lastName}
-            onChange={handleInputChange}
-            placeholder="Etternavn"
-          />
-          <input
-            className="inputField"
-            name="gender"
-            value={memberData.gender}
-            onChange={handleInputChange}
-            placeholder="Kjønn (M/F)"
-            maxLength="1"
-          />
-          <input
-            className="inputField"
-            name="birthYear"
-            value={memberData.birthYear}
-            onChange={handleInputChange}
-            placeholder="Fødselsår"
-            type="number"
-          />
-          <input
-            className="inputField"
-            name="email"
-            value={memberData.email}
-            onChange={handleInputChange}
-            placeholder="E-post"
-          />
-          <button className="button" onClick={handleAddMember}>
-            Legg til
-          </button>
-        </div>
+      {!selectedMemberNumber ? (
+        <MemberForm
+          memberData={memberData}
+          onInputChange={handleInputChange}
+          onSubmit={handleAddMember}
+          title="Legg til nytt medlem"
+          btnText="Legg til"
+        />
+      ) : (
+        <MemberForm
+          memberData={memberData}
+          onInputChange={handleInputChange}
+          onSubmit={handleUpdateMember}
+          onCancel={() => setSelectedMemberNumber(null)}
+          title={`Rediger medlem #${selectedMemberNumber}`}
+          btnText="Oppdater"
+        />
       )}
-
-      <ul className="memberList">
-        {members.map((member) => (
-          <li key={member.memberNumber} className="memberItem">
-            <div className="memberDetails">
-              {member.firstName} {member.lastName} ({member.email})
-            </div>
-            <div>
-              <button
-                className="button"
-                onClick={() => handleSelectMember(member.memberNumber)}
-              >
-                Velg
-              </button>
-              <button
-                className="button"
-                onClick={() => handleDeleteMember(member.memberNumber)}
-              >
-                Slett
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      {selectedMemberNumber && (
-        <div className="memberForm">
-          <h2>Rediger medlem #{selectedMemberNumber}</h2>
-          <input
-            className="inputField"
-            name="firstName"
-            value={memberData.firstName}
-            onChange={handleInputChange}
-            placeholder="Fornavn"
-          />
-          <input
-            className="inputField"
-            name="lastName"
-            value={memberData.lastName}
-            onChange={handleInputChange}
-            placeholder="Etternavn"
-          />
-          <input
-            className="inputField"
-            name="gender"
-            value={memberData.gender}
-            onChange={handleInputChange}
-            placeholder="Kjønn (M/F)"
-            maxLength="1"
-          />
-          <input
-            className="inputField"
-            name="birthYear"
-            value={memberData.birthYear}
-            onChange={handleInputChange}
-            placeholder="Fødselsår"
-            type="number"
-          />
-          <input
-            className="inputField"
-            name="email"
-            value={memberData.email}
-            onChange={handleInputChange}
-            placeholder="E-post"
-          />
-          <button className="button" onClick={handleUpdateMember}>
-            Oppdater
-          </button>
-          <button
-            className="button"
-            onClick={() => setSelectedMemberNumber(null)}
-          >
-            Avbryt
-          </button>
-        </div>
-      )}
+      <MembersList members={members} onSelect={handleSelectMember} onDelete={handleDeleteMember} />
+      <InfoDisplay loggedIn={isLoggedIn} />
     </div>
-  );
+);
+
+}
+Members.propTypes = {
+  members: PropTypes.array.isRequired,
+  setMembers: PropTypes.func.isRequired,
 };
-export default Members;

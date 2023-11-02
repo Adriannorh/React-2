@@ -46,8 +46,13 @@ Husk å endre server.js etter LocalHost på VITE!
 ## Hovedkomponenter
 
 1. **LoginComponent**: Lar brukere logge inn.
-2. **BlogViewer**: Viser alle publiserte blogginnlegg.
-3. **BlogComponent**: Lar innloggede brukere legge til nye blogginnlegg og slette eksisterende innlegg.
+2. **InfoDisplay**: Viser informasjon.
+3. **Members**: Lar innloggede brukere legge til nye og slette eksisterende innlegg etc.
+4. **Races**: Lar innloggede brukere legge til nye og slette eksisterende innlegg etc.
+5. **Results**: Lar innloggede brukere legge til nye og slette eksisterende innlegg etc.
+
+## StøtteKomponenter
+Det er flere støttekomponenter også.
 
 
 ### Forutsetninger
@@ -56,16 +61,75 @@ Husk å endre server.js etter LocalHost på VITE!
 - NPM (Node Package Manager) installert
 - 
 
+# API Endepunkter
 
-## API-Endepunkter
+API-et tilbyr følgende endepunkter:
 
-- **GET** `/api/blogginnlegg`: Henter alle blogginnlegg.
-- **POST** `/api/blogginnlegg`: Legger til et nytt blogginnlegg.
-- **DELETE** `/api/blogginnlegg/:id`: Sletter et blogginnlegg med en bestemt ID.
-- **POST** `/api/login`: Logger inn en bruker.
+## Innlogging
+
+- `POST /api/login` - Autentiser brukere.
+
+## Medlemmer
+
+- `GET /ga/members` - Hent alle medlemmer.
+- `GET /ga/members/:id` - Hent et enkelt medlem ved ID.
+- `POST /ga/members/` - Legg til et nytt medlem.
+- `PUT /ga/members/:id` - Oppdater medlemsdetaljer ved ID.
+- `DELETE /ga/members/:memberNumber` - Slett et medlem ved medlemsnummer.
+
+## Løp
+
+- `GET /ga/races` - Hent alle løp.
+- `GET /ga/races/:id` - Hent et enkelt løp ved ID.
+- `POST /ga/races/:id` - Legg til et nytt løp.
+- `PUT /ga/races/:id` - Oppdater løpsdetaljer ved ID.
+- `DELETE /ga/races/:id` - Slett et løp ved ID.
+
+## Resultater
+
+- `GET /ga/results` - Hent alle resultater.
+- `GET /ga/members/:id/results` - Hent resultater for et medlem ved ID.
+- `GET /ga/results/:distance` - Hent resultater ved distanse.
+
+## CORS Konfigurasjon
+
+CORS er konfigurert for å tillate forespørsler fra følgende opprinnelser:
+
+- `http://localhost:5173`
+- `http://localhost:5174`
+
+Forespørsler fra andre opprinnelser vil bli blokkert med mindre de er lagt til i `tillatteOpprinnelser`-arrayet i CORS-konfigurasjonen.
+
+
+## Til Dawood. 
+- Litt informasjon.
+Jeg ville bare gi deg en rask oppdatering om prosjekte og forklare hvorfor du vil se noen avvik i vår kode.
+
+## Enkelt Commit:
+Grunnet en uforutsett feil med min (Adrians) datamaskin, som til slutt krevde en tilbakestilling til fabrikkinnstillingene, måtte vi overføre hele prosjektarbeidet til Torills skole pc. Dette resulterte i at alt arbeidet vårt ble lastet opp i en enkelt commit. På den positive siden ga dette oss en fri passasje for å unngå git-konflikter. :P 
+
+## API-problemer:
+Vi har støtt på betydelige utfordringer med API-et, noe som har lagt en demper på vår evne til å holde koden så ryddig og strukturert som vi vanligvis liker. Til tross for disse hindringene har vi gjort vårt ytterste for å sikre at prosjektet fungerer så godt som mulig under de gitte omstendighetene.
+
+## Prioriteringsendringer:
+
+Med tidspresset hengende over oss og ønsket om å levere en fungerende applikasjon, bestemte vi oss for å sette Redux/useContext på vent. Dette var ikke en enkel avgjørelse, men vi mente det var nødvendig for å fokusere på de mer kritiske aspektene av prosjektet gitt den dårlig tiden vi hadde og for å kunne levere innen tidsfristen.
+
+## Prosjektet generelt 
+Dette prosjektet bygger videre på Egil sit arbeidskrav, Som Adrian leverte. Gunnen til dette er at vi hadde vanskeligheter med API og koden var satt opp strukturert.
+Vi har slette alt vi ikke trengte fra Egil sitt arbeidskrav og lagt inn det vi trenger for dette arbeidskravet. Brukte det som en (Tempelet). 
+
+## Avslutningsvis
+
+Selv om koden ikke er så strømlinjeformet som vi hadde håpet, er vi trygge på at de valgene vi tok underveis var i prosjektets beste interesse. Vi ser frem til å diskutere prosjektet videre og er åpne for eventuelle spørsmål eller tilbakemeldinger du måtte ha.
+
+Med vennlig hilsen,
+Adrian og Torill 
+
 
 ## Bidra
 ## Lisens
 ## Kontakt
 
-Du vet hvordan du kontakter meg 
+## Kontakt
+- Du vet hvordan du kontakter oss.

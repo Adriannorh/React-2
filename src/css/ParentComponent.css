@@ -1,0 +1,18 @@
+.parentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+.membersSection, .displayMembersSection, .raceListSection, .raceResultsSection {
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+

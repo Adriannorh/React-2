@@ -1,0 +1,36 @@
+.membersContainer {
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 2rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.displayMemberList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.displayMemberItem {
+    padding: 1rem;
+    border: 1px solid #e1e1e1;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.displayMemberItem:hover {
+    background-color: #eef0f2;
+}
+
+.memberDetails {
+    font-size: 1rem;
+    color: #555;
+}

@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 function Navbar({ loggedIn, onLogout }) {
     return (
         <nav className='navbar'>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
+            {loggedIn && <Link to="/members">Members</Link>}
+            {loggedIn && <Link to="/races">Races</Link>}
+            {loggedIn && <Link to="/results">Results</Link>}
+            {!loggedIn && <Link to="/">Home</Link>}
+            {!loggedIn && <Link to="/about">About</Link>}
+            {!loggedIn && <Link to="/contact">Contact</Link>}
             {!loggedIn ? (
                 <Link to="/login">Logg inn</Link>
             ) : (
@@ -18,5 +21,7 @@ function Navbar({ loggedIn, onLogout }) {
         </nav>
     );
 }
+
+
 
 export default Navbar;
