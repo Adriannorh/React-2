@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from 'react';
-import '../css/RaceDetails.css'
+import { useState, useEffect } from "react";
+import "../css/RaceDetails.css";
 
 const RaceDetails = ({ selectedRace, updateRace }) => {
   const [editRace, setEditRace] = useState(selectedRace);
@@ -18,8 +18,8 @@ const RaceDetails = ({ selectedRace, updateRace }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { raceNr, ...details } = editRace; // destrukturér raceNr og resten av detaljene
-    updateRace(raceNr, details); // send raceNr og detaljer til updateRace
+    const { raceNr, ...details } = editRace;
+    updateRace(raceNr, details);
   };
 
   return (
@@ -31,7 +31,7 @@ const RaceDetails = ({ selectedRace, updateRace }) => {
             <input
               type="text"
               name="raceName"
-              value={editRace.raceName || ''}
+              value={editRace.raceName || ""}
               onChange={handleInputChange}
               className="form-control"
             />
@@ -56,12 +56,12 @@ const RaceDetails = ({ selectedRace, updateRace }) => {
               className="form-control"
             />
           </div>
-          <button type="submit" className="btn btn-primary">Update Race</button>
+          <button type="submit" className="btn btn-primary">
+            Update Race
+          </button>
         </form>
       )}
     </div>
   );
-  
-}
+};
 export default RaceDetails;
-  

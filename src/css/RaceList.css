@@ -1,12 +1,10 @@
-/* RaceList.css */
 .race-list-container {
   margin: 10px;
   padding: 10px;
   background-color: #f5f5f5;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 .race-item {
   display: flex;
@@ -17,12 +15,12 @@
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  transition: box-shadow 0.3s ease; 
+  transition: box-shadow 0.3s ease;
   color: black;
 }
 
 .race-item:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .details-button,
@@ -32,15 +30,15 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease; 
+  transition: background-color 0.2s ease;
 }
 
 .details-button:hover {
-  background-color: #0056b3; 
+  background-color: #0056b3;
 }
 
 .delete-button:hover {
-  background-color: #c82333; 
+  background-color: #c82333;
 }
 
 .details-button {
@@ -52,4 +50,3 @@
   background-color: #dc3545;
   color: white;
 }
-

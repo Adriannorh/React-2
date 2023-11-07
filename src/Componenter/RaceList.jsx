@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/prop-types */
 import '../css/RaceList.css'
 
 const RaceList = ({ races, handleRaceSelect, deleteRace }) => {
     return (
-      <div className="race-list-container list-wrapper"> {/* Added new className here */}
+      <div className="race-list-container list-wrapper"> 
         {races.map(race => (
           <div key={race.raceNr} className="race-item">
             {race.distance}m - {new Date(race.raceDate).toLocaleDateString()}

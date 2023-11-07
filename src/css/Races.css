@@ -1,26 +1,22 @@
-/* Races.css */
 .races-container {
-    margin: 20px;
-  }
-  
-  .races-header {
-    color: #000000;
-    text-align: center;
-  }
-  
-  .race-form {
-    margin-bottom: 20px;
-    color: #000000;
-  }
-  
-  .race-list {
-    margin-bottom: 20px;
-  }
-  
-  .race-details {
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-  }
-  
-  /* Du kan legge til flere stiler og justere som nødvendig */
-  
+  margin: 20px;
+}
+
+.races-header {
+  color: #000000;
+  text-align: center;
+}
+
+.race-form {
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.race-list {
+  margin-bottom: 20px;
+}
+
+.race-details {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}

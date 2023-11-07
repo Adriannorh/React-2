@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import '../css/AddMemberForm.css';
+import { useState } from "react";
+import "../css/AddMemberForm.css";
 
 const AddMemberForm = ({ onAddMember }) => {
   const [newMember, setNewMember] = useState({
-    firstName: '',
-    lastName: '',
-    gender: '',
-    birthYear: '',
-    email: '',
+    firstName: "",
+    lastName: "",
+    gender: "",
+    birthYear: "",
+    email: "",
   });
   const [showForm, setShowForm] = useState(false);
 
@@ -23,34 +23,33 @@ const AddMemberForm = ({ onAddMember }) => {
       birthYear: Number(newMember.birthYear),
     };
 
-    // Here you would submit your member data to your backend API
-    fetch('/ga/members', {
-      method: 'POST',
+    fetch("/ga/members", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(memberToSubmit),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Problem adding member, status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(memberData => {
-      onAddMember(memberData);
-      setNewMember({
-        firstName: '',
-        lastName: '',
-        gender: '',
-        birthYear: '',
-        email: '',
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Problem adding member, status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((memberData) => {
+        onAddMember(memberData);
+        setNewMember({
+          firstName: "",
+          lastName: "",
+          gender: "",
+          birthYear: "",
+          email: "",
+        });
+        setShowForm(false);
+      })
+      .catch((error) => {
+        console.error(`Failed to add member: ${error}`);
       });
-      setShowForm(false); // Hide the form again after submitting
-    })
-    .catch(error => {
-      console.error(`Failed to add member: ${error}`);
-    });
   };
 
   const handleShowForm = () => {
@@ -60,7 +59,9 @@ const AddMemberForm = ({ onAddMember }) => {
   return (
     <>
       {!showForm && (
-        <button onClick={handleShowForm} className="show-form-button">Add New Member</button>
+        <button onClick={handleShowForm} className="show-form-button">
+          Add New Member
+        </button>
       )}
 
       {showForm && (
@@ -93,7 +94,6 @@ const AddMemberForm = ({ onAddMember }) => {
             <option value="">Select Gender</option>
             <option value="M">Male</option>
             <option value="F">Female</option>
-            {/* Additional gender options can be added here */}
           </select>
           <input
             className="form-input"
@@ -113,7 +113,9 @@ const AddMemberForm = ({ onAddMember }) => {
             placeholder="Email Address"
             required
           />
-          <button className="form-button" type="submit">Add Member</button>
+          <button className="form-button" type="submit">
+            Add Member
+          </button>
         </form>
       )}
     </>

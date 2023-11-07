@@ -3,7 +3,7 @@
 }
 
 .results-title {
-  color: black; 
+  color: black;
 }
 
 .results-form {
@@ -21,7 +21,7 @@
   background-color: #f0f0f0;
   padding: 10px;
   border-radius: 4px;
-  color: black; 
+  color: black;
 }
 
 .results-container {
@@ -37,20 +37,19 @@
 }
 
 .filter-container {
-  margin-bottom: 20px; /* Legg til avstand under filteret */
+  margin-bottom: 20px;
 }
 
 .filter-label {
-  display: block; /* Gjør at label tar hele bredden */
-  margin-bottom: 10px; /* Avstand mellom label og select */
+  display: block;
+  margin-bottom: 10px;
 }
 
 .race-nr-select {
-  width: 100%; /* Gjør at select tar hele bredden til sin konteiner */
-  padding: 10px; /* Mer behagelig å bruke */
-  border-radius: 4px; /* Avrundede kanter som matcher resten av designet */
-  border: 1px solid #ccc; /* Subtil border som matcher */
-  /* Legg til flere stiler etter behov */
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .results-list {

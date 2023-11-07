@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import '../css/Results.css'
+import "../css/Results.css";
 
 const Results = () => {
   const [results, setResults] = useState([]);
@@ -11,18 +11,16 @@ const Results = () => {
   });
   const [selectedRaceNr, setSelectedRaceNr] = useState("");
 
-  // Hent resultater fra serveren
   useEffect(() => {
     fetch("/ga/results")
       .then((response) => response.json())
       .then((data) => {
         setResults(data);
-        setDisplayedResults(data); // Oppdaterer displayedResults med data fra serveren
+        setDisplayedResults(data);
       })
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  // Oppdater displayedResults når selectedRaceNr endres
   useEffect(() => {
     const filteredResults = selectedRaceNr
       ? results.filter((result) => result.raceNr.toString() === selectedRaceNr)
@@ -30,17 +28,14 @@ const Results = () => {
     setDisplayedResults(filteredResults);
   }, [selectedRaceNr, results]);
 
-  // Håndter endring i input-feltene
   const handleChange = (event) => {
     setNewResult({ ...newResult, [event.target.name]: event.target.value });
   };
 
-  // Håndter endring i select-elementet for raceNr
   const handleRaceNrChange = (event) => {
     setSelectedRaceNr(event.target.value);
   };
 
-  // Registrer et nytt resultat
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch("/ga/results", {
@@ -54,27 +49,26 @@ const Results = () => {
         if (!response.ok) {
           throw new Error("Server returned an error response");
         }
-        return response.text(); // Først forsøk å lese teksten
+        return response.text();
       })
       .then((text) => {
         try {
-          return JSON.parse(text); // Deretter forsøk å parse det som JSON
+          return JSON.parse(text);
         } catch (err) {
           console.error("Server response was not JSON:", text);
-          throw err; // Kast feilen videre for håndtering
+          throw err;
         }
       })
       .then((data) => {
         setResults([...results, data]);
-        setNewResult({ raceNr: "", memberNr: "", raceTime: "" }); // Nullstill inputfeltene etter suksess
-        setSelectedRaceNr(""); // Nullstill også det valgte løpsnummeret
+        setNewResult({ raceNr: "", memberNr: "", raceTime: "" });
+        setSelectedRaceNr("");
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
 
-  // Finn unike raceNr for å bruke i <select>-elementet
   const uniqueRaceNrs = Array.from(
     new Set(results.map((result) => result.raceNr.toString()))
   );
@@ -83,7 +77,6 @@ const Results = () => {
     <div className="results-container">
       <h1 className="results-title">Resultater</h1>
       <form onSubmit={handleSubmit} className="results-form">
-        {/* Input-feltene for nytt resultat */}
         <input
           className="input-field"
           type="number"
@@ -102,7 +95,7 @@ const Results = () => {
         />
         <input
           className="input-field"
-          type="text" // Endret fra number til text for å tillate mer fleksible tidformater
+          type="text"
           name="raceTime"
           value={newResult.raceTime}
           onChange={handleChange}

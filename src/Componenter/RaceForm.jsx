@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import '../css/RaceForm.css';
+import "../css/RaceForm.css";
 
 const RaceForm = ({ newRace, handleInputChange, submitNewRace }) => {
   return (
@@ -20,7 +20,9 @@ const RaceForm = ({ newRace, handleInputChange, submitNewRace }) => {
         onChange={handleInputChange}
         placeholder="Distance (meters)"
       />
-      <button className="submit-button" onClick={submitNewRace}>Submit New Race</button>
+      <button className="submit-button" onClick={submitNewRace}>
+        Submit New Race
+      </button>
     </div>
   );
 };

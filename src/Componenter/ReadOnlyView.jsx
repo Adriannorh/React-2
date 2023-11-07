@@ -21,23 +21,21 @@ const ReadOnlyView = () => {
         setRaces(
           racesData.map((race) => ({
             ...race,
-            raceNr: String(race.raceNr), // Assuming race numbers are strings
+            raceNr: String(race.raceNr),
           }))
         );
         setResults(resultsData);
         setLoading(false);
       })
       .catch((error) => {
-        setError(error.message || 'An error occurred');
+        setError(error.message || "An error occurred");
         setLoading(false);
       });
   }, []);
 
-  // When selectedRaceNr changes, filter the results accordingly
   useEffect(() => {
-    // When selectedRaceNr changes, filter the results accordingly
     const filteredResults = selectedRaceNr
-      ? results.filter(result => String(result.raceNr) === selectedRaceNr)
+      ? results.filter((result) => String(result.raceNr) === selectedRaceNr)
       : results;
     setDisplayedResults(filteredResults);
   }, [selectedRaceNr, results]);
@@ -49,7 +47,6 @@ const ReadOnlyView = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  // Extract unique race numbers from races data
   const uniqueRaceNrs = [...new Set(races.map((race) => race.raceNr))];
 
   return (
@@ -94,7 +91,6 @@ const ReadOnlyView = () => {
             <p>
               {member.firstName} {member.lastName}
             </p>
-            {/* Add other member details you want to show */}
           </div>
         ))}
       </section>
@@ -107,7 +103,6 @@ const ReadOnlyView = () => {
               Race Nr: {race.raceNr} - Date: {race.raceDate} - Distance:{" "}
               {race.distance}
             </p>
-            {/* Add other race details you want to show */}
           </div>
         ))}
       </section>
@@ -117,12 +112,10 @@ const ReadOnlyView = () => {
         {results.map((result, index) => (
           <div key={index} className="result-item">
             {" "}
-            {/* Ideally, use a unique identifier from result instead of index */}
             <p>
               Member Nr: {result.memberNr} - Time: {result.raceTime} - Name:{" "}
               {result.firstName} {result.lastName}
             </p>
-            {/* Add other result details you want to show */}
           </div>
         ))}
       </section>
