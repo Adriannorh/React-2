@@ -1,0 +1,67 @@
+/* MembersList.css */
+
+/* MembersList.css */
+
+.members-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .member-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px; /* Adjust margin to ensure the boxes have space between them */
+    border-radius: 4px;
+    width: calc(25% - 20px); /* Adjust width to account for margin */
+    box-sizing: border-box; /* Include padding and border in the element's width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* The rest of the styles remain the same */
+  
+  
+  .member-item h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .member-item p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .member-item .member-links {
+    margin-top: 10px;
+  }
+  
+  .member-item .member-links a {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  }
+  
+  .member-item .member-links a:hover {
+    background-color: #0056b3;
+  }
+  
+  .member-item button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .member-item button:hover {
+    background-color: #c82333;
+  }
+  

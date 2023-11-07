@@ -1,0 +1,54 @@
+const express = require("express");
+
+const cors = require("cors");
+
+const PORT = 3006;
+const app = express();
+
+
+// CORS Configuration
+/* app.use(
+  cors({
+    origin: function (origin, callback) {
+      const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+); */
+/* app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Tillater alle opprinnelser
+      callback(null, true);
+    },
+    credentials: true,
+  })
+); */ 
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    // Her kan du legge inn en sjekk for å tillate eller nekte bestemte opprinnelser
+    return callback(null, origin); // Reflekterer opprinnelsen i headeren
+  },
+  credentials: true, // Dette indikerer at du vil tillate cookies, HTTP-autentisering, osv.
+}));
+
+
+
+
+
+app.use(express.json());
+
+/* // Login Route
+app.post("/api/login", handleUsers);
+ */
+
+app.listen(PORT, () => {
+  console.log(`server is running on ${PORT}`);
+});

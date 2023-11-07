@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './css/Navbar.css'; // Make sure the path matches the location of your CSS file
 
 // eslint-disable-next-line react/prop-types
 function Navbar({ loggedIn, onLogout }) {
@@ -14,14 +15,12 @@ function Navbar({ loggedIn, onLogout }) {
                 <Link to="/login">Logg inn</Link>
             ) : (
                 <>
-                    <Link to="/admin">Admin</Link>
+{/*                     <Link to="/admin">Admin</Link> */}
                     <button onClick={onLogout}>Logg ut</button>
                 </>
             )}
         </nav>
     );
 }
-
-
 
 export default Navbar;

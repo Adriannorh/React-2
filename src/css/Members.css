@@ -1,0 +1,85 @@
+/* Members.css */
+
+/* Style for the overall container of the members list */
+.members-list {
+  list-style-type: none; /* Removes the default list item bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* Allows member cards to wrap onto the next line */
+  justify-content: space-around; /* Distributes space evenly between the member cards */
+}
+
+/* Style for each individual member */
+.member {
+  background-color: #f2f2f2; /* A light grey background */
+  border: 1px solid #e1e1e1; /* A subtle border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 15px;
+  margin: 10px; /* Space between cards */
+  width: calc(25% - 20px); /* Four cards per row with space for margin */
+  box-sizing: border-box; /* Include padding and border in the width */
+  transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Slightly grow the card on hover to add emphasis */
+.member:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* A light shadow for depth */
+}
+
+/* Style for member details */
+.member h2 {
+  color: #333; /* Dark text for the name */
+  margin: 0;
+  margin-bottom: 10px; /* Space below the name */
+}
+
+.member p {
+  color: #666; /* Lighter text for details */
+  margin: 5px 0; /* Standard margin for all paragraphs */
+}
+
+.member a {
+  color: #007bff; /* Bootstrap's default link color */
+  text-decoration: none; /* No underline for a cleaner look */
+}
+
+.member a:hover {
+  text-decoration: underline; /* Underline on hover for clarity */
+}
+
+/* Style for the delete button */
+.member button {
+  background-color: #ff4d4f; /* A reddish background for delete actions */
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 16px;
+  cursor: pointer; /* The pointer cursor for clickable elements */
+  margin-top: 10px; /* Space above the button */
+}
+
+.member button:hover {
+  background-color: #ff7875; /* A lighter red on hover */
+}
+
+/* Loading and error message styles */
+.loading-message,
+.error-message {
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .member {
+    width: calc(50% - 20px); /* Two cards per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .member {
+    width: 100%; /* Full width cards on very small screens */
+  }
+}

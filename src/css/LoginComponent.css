@@ -1,0 +1,61 @@
+/* CSS for LoginComponent */
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full skjermhøyde */
+    background-color: #242424; /* Lett grå bakgrunn */
+  }
+  
+  .divBox {
+    padding: 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .divBox input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* For å sikre at padding ikke legger til bredde */
+    background-color: wheat;
+    color: black;
+  }
+  
+  .divBox button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff7919;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .divBox button:hover {
+    background-color: #ff6a00;
+  }
+  
+  /* Spesifikk stil for feiltilstander */
+  .form_text-error {
+    border-color: #ff3860;
+    background-color: #ffe5e7;
+  }
+  
+  /* Stil for feilmeldingen */
+  .divBox p {
+    color: #ff3860;
+    font-size: 0.9em;
+  }
+  
+  /* Juster slik at placeholder-teksten og input-teksten er sentrert vertikalt */
+  .divBox input::placeholder {
+    vertical-align: middle;
+  }
+  

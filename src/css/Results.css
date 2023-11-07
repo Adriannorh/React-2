@@ -1,0 +1,68 @@
+.results-container {
+  padding: 20px;
+}
+
+.results-title {
+  color: black; 
+}
+
+.results-form {
+  margin-bottom: 20px;
+}
+
+.results-list {
+  list-style: none;
+  padding: 0;
+  color: black;
+}
+
+.results-list-item {
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  color: black; 
+}
+
+.results-container {
+  padding: 20px;
+}
+
+.results-title {
+  color: black;
+}
+
+.results-form {
+  margin-bottom: 20px;
+}
+
+.filter-container {
+  margin-bottom: 20px; /* Legg til avstand under filteret */
+}
+
+.filter-label {
+  display: block; /* Gjør at label tar hele bredden */
+  margin-bottom: 10px; /* Avstand mellom label og select */
+}
+
+.race-nr-select {
+  width: 100%; /* Gjør at select tar hele bredden til sin konteiner */
+  padding: 10px; /* Mer behagelig å bruke */
+  border-radius: 4px; /* Avrundede kanter som matcher resten av designet */
+  border: 1px solid #ccc; /* Subtil border som matcher */
+  /* Legg til flere stiler etter behov */
+}
+
+.results-list {
+  list-style: none;
+  padding: 0;
+  color: black;
+}
+
+.results-list-item {
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  color: black;
+}

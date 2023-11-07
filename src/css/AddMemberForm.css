@@ -1,0 +1,74 @@
+/* AddMemberForm.css */
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+  }
+  
+  .form-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #ff7919;
+    cursor: pointer;
+  }
+  
+  .form-button:hover {
+    background-color: #fc720f;
+  }
+
+  
+
+  /* Add New Member button styling */
+.show-form-button {
+    background-color: #ff7919; /* Green background */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .show-form-button:hover {
+    background-color: #fc720f; /* Darker green on hover */
+  }
+  
+  .show-form-button:active {
+    background-color: #fc720f; /* Even darker green when active/clicked */
+    transform: translateY(2px); /* Slightly push the button down when clicked */
+  }
+  
+  /* Optional: Add a little animation when the button is focused for keyboard navigation */
+  .show-form-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Add a glowing effect */
+  }
+  

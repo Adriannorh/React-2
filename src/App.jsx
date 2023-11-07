@@ -1,92 +1,87 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useNavigate,
   Navigate,
-} from "react-router-dom";
-import Navbar from "./Navbar.jsx";
-import LoginComponent from "./LoginComponent";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import ParentComponent from "./ParentComponent";
-import Races from "./Races.jsx";
-import Results from "./Results.jsx";
-import InfoDisplay from "./InfoDisplay.jsx";
+} from 'react-router-dom';
+import LoginComponent from './LoginComponent';
+import Navbar from './Navbar';
+import About from './pages/About'
+import Contact from './pages/Contact'
+import AddMemberForm from './Componenter/AddMemberForm'; // Assuming you've created this component
+import MembersList from './Componenter/MembersList';
+import Races from './Componenter/Races'; 
+import Results from './Componenter/Results';
+import ReadOnlyView from './Componenter/ReadOnlyView';
 
-function MainContent() {
-  const navigate = useNavigate();
+
+const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-
-  /*   useEffect(() => {
-    if (loggedIn) {
-      navigate("/admin");
+  const [members, setMembers] = useState([]); // State for members data
+  const fetchMembers = async () => {
+    try {
+      const response = await fetch('/ga/members');
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      setMembers(data);
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
     }
-  }, [loggedIn, navigate]); */
+  };
+  useEffect(() => {
+    if (loggedIn) {
+        fetchMembers();
+    }
+  }, [loggedIn]);
+
+  const handleSuccessfulLogin = () => {
+    setLoggedIn(true);
+  };
 
   const handleLogout = () => {
+    sessionStorage.removeItem('authToken'); // Clear the session storage or any auth tokens
     setLoggedIn(false);
-    navigate("/");
-  };
-  const handleLoginSuccess = () => {
-    setLoggedIn(true);
-    navigate("/members");
   };
 
-  return (
-    <div>
-      <Navbar loggedIn={loggedIn} onLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<InfoDisplay />} />
-        <Route
-          path="/races"
-          element={
-            loggedIn ? <Races loggedIn={loggedIn} /> : <Navigate to="/login" />
-          }
-        />
+  const addMember = (newMember) => {
+    setMembers([...members, newMember]);
+  };
 
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route
-          path="/results"
-          element={loggedIn ? <Results /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/members"
-          element={
-            loggedIn ? (
-              <ParentComponent loggedIn={loggedIn} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
+  const deleteMember = (memberId) => {
+    setMembers(members.filter(member => member.memberNumber !== memberId));
+  };
 
-        {loggedIn ? (
-          <Route path="/login" element={<Navigate to="/admin" />} />
-        ) : (
-          <Route
-            path="/login"
-            element={<LoginComponent onSuccessfulLogin={handleLoginSuccess} />}
-          />
-        )}
-
-        <Route
-          path="/admin"
-          element={loggedIn ? <About /> : <Navigate to="/login" />}
-        />
-      </Routes>
-    </div>
-  );
-}
-
-function App() {
   return (
     <Router>
-      <MainContent />
+      <div>
+        <Navbar loggedIn={loggedIn} onLogout={handleLogout} />
+        <Routes>
+          <Route path="/" element={<ReadOnlyView />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={!loggedIn ? <LoginComponent onSuccessfulLogin={handleSuccessfulLogin} /> : <Navigate replace to="/members" />} />
+          
+          {/* Protected routes */}
+          <Route path="/members" element={loggedIn ? (
+            <>
+              <AddMemberForm onAddMember={addMember} />
+              <MembersList members={members} onDeleteMember={deleteMember} />
+            </>
+          ) : <Navigate replace to="/login" />} />
+          <Route path="/races" element={loggedIn ? <Races /> : <Navigate replace to="/login" />} />
+          
+          {/* Results Route */}
+          <Route path="/results" element={loggedIn ? <Results /> : <Navigate replace to="/login" />} />
+          
+          {/* If no other route matches, fall back to the home page */}
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </div>
     </Router>
   );
-}
+};
+
+const Home = () => <h1>Home Page</h1>;
 
 export default App;
